@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0062)file:///C:/Users/thiba/Downloads/index_5.html#problematisation -->
 <html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +28,7 @@
         h2, h3, h4, nav, .nav-link, .card-label, .section-num, .section-title, .hyp-id, .hyp-title, .risk-num, .risk-title, .num-circle, .scale-label, .phase-bar, .card-title, .card-icon { text-align: initial; }
         .hero-banner h1, .hero-banner p, .hero-banner div { text-align: center; }
 
-        /* ===== HERO ===== */
+   
         .hero-banner { width: 100%; background: linear-gradient(135deg, var(--navy) 0%, #1e3258 40%, var(--navy-light) 100%); color: #fff; padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; text-align: center !important; }
         .hero-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(200,164,90,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%); pointer-events: none; }
         .hero-banner::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent)); }
@@ -42,13 +41,13 @@
         .keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; justify-content: center; }
         .kw { font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(200,164,90,0.25); color: #fff; border-radius: 3px; font-weight: 600; }
 
-        /* ===== NAV ===== */
+    
         .nav-bar { width: 100%; background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
         .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; padding: 0 0.5rem; }
         .nav-link { padding: 0.55rem 0.55rem; font-size: 0.71rem; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-light); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
         .nav-link:hover, .nav-link.active { color: var(--navy); border-bottom-color: var(--accent); }
 
-        /* ===== SECTIONS ===== */
+ 
         .section { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
         .section + .section { border-top: 1px solid var(--border-light); }
         .banner-section { width: 100%; padding: 3rem 2rem; }
@@ -64,7 +63,7 @@
         .section-lead { font-size: 0.93rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.75; }
         .banner-navy .section-lead { color: rgba(255,255,255,0.8); }
 
-        /* ===== CARDS ===== */
+  
         .card { background: #fff; border: 1px solid var(--border-light); border-radius: 6px; padding: 1.5rem; text-align: center !important; transition: box-shadow 0.25s, transform 0.25s; cursor: default; }
         .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
         .card-left { text-align: justify !important; }
@@ -77,7 +76,7 @@
         .card-text { font-size: 0.88rem; color: var(--text-light); line-height: 1.65; }
         .banner-navy .card-text { color: rgba(255,255,255,0.75); }
 
-        /* ===== ICON ===== */
+ 
         .card-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
         .card:not(.card-left) .card-head { justify-content: center; }
         .card-head .card-icon { margin-bottom: 0; flex-shrink: 0; }
@@ -86,18 +85,18 @@
         .card-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
         .banner-navy .card-icon svg { stroke: var(--accent-light); }
 
-        /* ===== GRIDS ===== */
+    
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 
-        /* ===== HYPOTHESIS ===== */
+  
         .hyp-card { border-left: 3px solid var(--accent); padding: 1rem 1.5rem; background: #fff; border-radius: 0 6px 6px 0; border-top: 1px solid var(--border-light); border-right: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); transition: box-shadow 0.25s, transform 0.25s; }
         .hyp-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); transform: translateX(3px); }
         .hyp-id { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; color: var(--accent); margin-bottom: 0.2rem; }
         .hyp-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; }
         .hyp-text { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; text-align: justify; }
 
-        /* ===== TABLE ===== */
+  
         .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
         .data-table th { background: var(--navy); color: #fff; font-weight: 600; padding: 0.65rem 0.8rem; text-align: left; font-size: 0.78rem; }
         .data-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border-light); }
@@ -109,23 +108,23 @@
         .phase-valorisation { background: var(--info); }
         .phase-mobility { background: #8b5e3c; }
 
-        /* ===== NUM ITEMS ===== */
+  
         .num-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
         .num-circle { flex-shrink: 0; width: 30px; height: 30px; background: var(--navy); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-weight: 700; }
 
-        /* ===== SCALE ROWS ===== */
+    
         .scale-row { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; align-items: start; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
         .scale-row:last-child { border-bottom: none; }
         .scale-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-light); padding-top: 0.2rem; }
 
-        /* ===== RISK ===== */
+      
         .risk-item { display: grid; grid-template-columns: 28px 1fr; gap: 0.8rem; margin-bottom: 0.8rem; }
         .risk-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); font-weight: 500; padding-top: 0.15rem; }
         .risk-title { font-weight: 700; font-size: 0.88rem; color: var(--navy); margin-bottom: 0.15rem; }
         .risk-parade { font-size: 0.83rem; color: var(--text-light); }
         .risk-parade strong { color: var(--success); }
 
-        /* ===== DIMENSIONS ===== */
+   
         .dim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
         .dim-card { text-align: center !important; padding: 1.1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.25s, transform 0.25s; }
         .dim-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
@@ -135,12 +134,12 @@
         .dim-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
         .dim-desc { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
 
-        /* ===== HIGHLIGHT ===== */
+      
         .highlight-box { background: var(--accent-bg); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; border-radius: 0 6px 6px 0; margin: 1.2rem 0; }
         .highlight-box p { font-size: 0.93rem; color: var(--text); line-height: 1.7; text-align: justify; }
         .highlight-box strong { color: var(--navy); }
 
-        /* ===== RESPONSIVE ===== */
+    
         @media (max-width: 768px) {
             .hero-title { font-size: 1.8rem; }
             .hero-meta { flex-direction: column; }
@@ -156,7 +155,7 @@
 </head>
 <body>
 
-<!-- HERO -->
+
 <header class="hero-banner">
     <div class="hero-inner">
         <div class="hero-top-line">Portfolio de Recherche — Projet de thèse doctorale</div>
@@ -182,7 +181,7 @@
     </div>
 </header>
 
-<!-- NAV -->
+
 <nav class="nav-bar">
     <div class="nav-inner">
         <a href="file:///C:/Users/thiba/Downloads/index_5.html#resume" class="nav-link">1. Résumé</a>
@@ -199,7 +198,7 @@
     </div>
 </nav>
 
-<!-- 1. RÉSUMÉ -->
+
 <section id="resume" class="banner-section banner-warm fade-in visible">
     <div class="section-inner">
         <div class="section-num">Section 1</div>
@@ -222,7 +221,7 @@
     </div>
 </section>
 
-<!-- 2. PROBLÉMATISATION -->
+
 <section id="problematisation" class="section fade-in visible">
     <div class="section-num">Section 2</div>
     <h2 class="section-title">Problématisation, périmètre et questions de recherche</h2>
@@ -266,7 +265,7 @@
     <div class="num-item"><div class="num-circle">3</div><div><strong style="color:var(--navy);">Souveraineté et gouvernabilité</strong><p style="font-size:0.9rem;color:var(--text-light);">Dans quelle mesure les encadrements normatifs et organisationnels (RGPD, AI Act, instances de contrôle) contribuent-ils à stabiliser l'imputabilité et à rendre les dispositifs gouvernables, ou mettent-ils au contraire en évidence les limites du contrôle sur des infrastructures complexes&nbsp;?</p></div></div>
 </section>
 
-<!-- 3. HYPOTHÈSES -->
+
 <section id="hypotheses" class="banner-section banner-accent fade-in visible">
     <div class="section-inner">
         <div class="section-num">Section 3</div>
@@ -281,7 +280,7 @@
     </div>
 </section>
 
-<!-- 4. ÉTAT DE L'ART -->
+
 <section id="etat-art" class="section fade-in visible">
     <div class="section-num">Section 4</div>
     <h2 class="section-title">État de l'art et positionnement</h2>
@@ -297,7 +296,7 @@
     <div class="highlight-box"><p><strong>Lacune et promesse empirique :</strong> la littérature n'éclaire pas la rencontre entre ces dynamiques globales et un pouvoir administratif structuré par les grands corps et le modèle généraliste. <strong>Documenter cette évolution par une enquête articulant trajectoires, pratiques et dispositifs constitue la promesse de cette thèse.</strong></p></div>
 </section>
 
-<!-- 5. CADRE CONCEPTUEL -->
+
 <section id="cadre" class="banner-section banner-navy fade-in visible">
     <div class="section-inner">
         <div class="section-num">Section 5</div>
@@ -361,7 +360,7 @@
     </div>
 </section>
 
-<!-- 6. MÉTHODOLOGIE -->
+
 <section id="methodo" class="section fade-in visible">
     <div class="section-num">Section 6</div>
     <h2 class="section-title">Dispositif méthodologique</h2>
@@ -401,7 +400,6 @@
     </div>
 </section>
 
-<!-- 7. FAISABILITÉ -->
 <section id="faisabilite" class="banner-section banner-warm fade-in visible">
     <div class="section-inner">
         <div class="section-num">Section 7</div>
@@ -428,7 +426,6 @@
     </div>
 </section>
 
-<!-- 8. CONTRIBUTIONS -->
 <section id="contributions" class="section fade-in visible">
     <div class="section-num">Section 8</div>
     <h2 class="section-title">Contributions attendues</h2>
@@ -449,7 +446,6 @@
     </div>
 </section>
 
-<!-- 9. INTÉGRATION -->
 <section id="integration" class="banner-section banner-accent fade-in visible">
     <div class="section-inner">
         <div class="section-num">Section 9</div>
@@ -515,7 +511,7 @@
     </div>
 </section>
 
-<!-- 11. FINANCEMENT -->
+    
 <section id="financement" class="banner-section banner-navy fade-in visible">
     <div class="section-inner">
         <div class="section-num">Section 11</div>
