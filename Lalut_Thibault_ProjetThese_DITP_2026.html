@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gouverner l'État à l'épreuve de l'intelligence artificielle</title>
+    <style>
+        :root {
+            --navy: #1a2744;
+            --navy-light: #2a3d5e;
+            --accent: #c8a45a;
+            --accent-light: #e8d49a;
+            --accent-bg: #faf6ed;
+            --bg: #fafaf8;
+            --bg-warm: #f5f3ef;
+            --text: #2c2c2c;
+            --text-light: #5a5a5a;
+            --border: #e0ddd6;
+            --border-light: #eae8e3;
+            --success: #3a7d5c;
+            --info: #3d6b8e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 18px; }
+        body { font-family: 'Times New Roman', Georgia, 'Noto Serif', serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; text-align: justify; text-justify: inter-word; }
+        h2, h3, h4, nav, .nav-link, .card-label, .section-num, .section-title, .hyp-id, .hyp-title, .risk-num, .risk-title, .num-circle, .scale-label, .phase-bar, .card-title, .card-icon { text-align: initial; }
+        .hero-banner h1, .hero-banner p, .hero-banner div { text-align: center; }
+
+   
+        .hero-banner { width: 100%; background: linear-gradient(135deg, var(--navy) 0%, #1e3258 40%, var(--navy-light) 100%); color: #fff; padding: 3.5rem 2rem 3rem; position: relative; overflow: hidden; text-align: center !important; }
+        .hero-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(200,164,90,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 40%); pointer-events: none; }
+        .hero-banner::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent)); }
+        .hero-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-top-line { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1.8rem; opacity: 0.9; }
+        .hero-title { font-family: Georgia, 'Times New Roman', serif; font-size: 2.6rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.6rem; }
+        .hero-subtitle { font-family: Georgia, 'Times New Roman', serif; font-size: 1.2rem; font-weight: 400; font-style: italic; color: rgba(255,255,255,0.75); margin: 0 auto 2rem; max-width: 760px; }
+        .hero-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.8rem; font-size: 0.88rem; color: rgba(255,255,255,0.8); }
+        .hero-meta strong { color: var(--accent-light); font-weight: 600; }
+        .keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.2rem; justify-content: center; }
+        .kw { font-size: 0.72rem; padding: 0.2rem 0.6rem; background: rgba(200,164,90,0.25); color: #fff; border-radius: 3px; font-weight: 600; }
+
+    
+        .nav-bar { width: 100%; background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; padding: 0 0.5rem; }
+        .nav-link { padding: 0.55rem 0.55rem; font-size: 0.71rem; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-light); text-decoration: none; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--navy); border-bottom-color: var(--accent); }
+
+ 
+        .section { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
+        .section + .section { border-top: 1px solid var(--border-light); }
+        .banner-section { width: 100%; padding: 3rem 2rem; }
+        .banner-section .section-inner { max-width: 960px; margin: 0 auto; }
+        .banner-navy { background: var(--navy); color: #fff; }
+        .banner-warm { background: var(--bg-warm); }
+        .banner-accent { background: var(--accent-bg); }
+
+        .section-num { font-family: Georgia, 'Times New Roman', serif; font-size: 1.1rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .banner-navy .section-num { color: var(--accent-light); }
+        .section-title { font-family: Georgia, 'Times New Roman', serif; font-size: 2rem; font-weight: 700; color: var(--navy); margin-bottom: 1.2rem; line-height: 1.2; }
+        .banner-navy .section-title { color: #fff; }
+        .section-lead { font-size: 0.93rem; color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.75; }
+        .banner-navy .section-lead { color: rgba(255,255,255,0.8); }
+
+  
+        .card { background: #fff; border: 1px solid var(--border-light); border-radius: 6px; padding: 1.5rem; text-align: center !important; transition: box-shadow 0.25s, transform 0.25s; cursor: default; }
+        .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .card-left { text-align: justify !important; }
+        .banner-navy .card { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.12); }
+        .banner-navy .card:hover { background: rgba(255,255,255,0.11); box-shadow: 0 6px 24px rgba(0,0,0,0.18); transform: translateY(-2px); }
+        .card-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+        .banner-navy .card-label { color: var(--accent-light); }
+        .card-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; }
+        .banner-navy .card-title { color: #fff; }
+        .card-text { font-size: 0.88rem; color: var(--text-light); line-height: 1.65; }
+        .banner-navy .card-text { color: rgba(255,255,255,0.75); }
+
+ 
+        .card-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .card:not(.card-left) .card-head { justify-content: center; }
+        .card-head .card-icon { margin-bottom: 0; flex-shrink: 0; }
+        .card-head .card-label { margin-bottom: 0; }
+        .card-icon { margin-bottom: 0.8rem; }
+        .card-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .banner-navy .card-icon svg { stroke: var(--accent-light); }
+
+    
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+
+  
+        .hyp-card { border-left: 3px solid var(--accent); padding: 1rem 1.5rem; background: #fff; border-radius: 0 6px 6px 0; border-top: 1px solid var(--border-light); border-right: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); transition: box-shadow 0.25s, transform 0.25s; }
+        .hyp-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); transform: translateX(3px); }
+        .hyp-id { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; color: var(--accent); margin-bottom: 0.2rem; }
+        .hyp-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.35rem; }
+        .hyp-text { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; text-align: justify; }
+
+  
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
+        .data-table th { background: var(--navy); color: #fff; font-weight: 600; padding: 0.65rem 0.8rem; text-align: left; font-size: 0.78rem; }
+        .data-table td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border-light); }
+        .data-table tr:nth-child(even) td { background: var(--bg-warm); }
+        .phase-bar { display: inline-block; height: 8px; border-radius: 4px; min-width: 30px; }
+        .phase-intensive { background: var(--navy); }
+        .phase-secondary { background: var(--accent); opacity: 0.5; }
+        .phase-writing { background: var(--success); }
+        .phase-valorisation { background: var(--info); }
+        .phase-mobility { background: #8b5e3c; }
+
+  
+        .num-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1rem; }
+        .num-circle { flex-shrink: 0; width: 30px; height: 30px; background: var(--navy); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: Georgia, 'Times New Roman', serif; font-size: 0.85rem; font-weight: 700; }
+
+    
+        .scale-row { display: grid; grid-template-columns: 100px 1fr; gap: 1rem; align-items: start; margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.12); }
+        .scale-row:last-child { border-bottom: none; }
+        .scale-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-light); padding-top: 0.2rem; }
+
+      
+        .risk-item { display: grid; grid-template-columns: 28px 1fr; gap: 0.8rem; margin-bottom: 0.8rem; }
+        .risk-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); font-weight: 500; padding-top: 0.15rem; }
+        .risk-title { font-weight: 700; font-size: 0.88rem; color: var(--navy); margin-bottom: 0.15rem; }
+        .risk-parade { font-size: 0.83rem; color: var(--text-light); }
+        .risk-parade strong { color: var(--success); }
+
+   
+        .dim-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .dim-card { text-align: center !important; padding: 1.1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; transition: background 0.25s, transform 0.25s; }
+        .dim-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+        .dim-icon { margin-bottom: 0.5rem; }
+        .dim-icon svg { width: 24px; height: 24px; stroke: var(--accent-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .dim-num { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent-light); margin-bottom: 0.15rem; }
+        .dim-title { font-family: Georgia, 'Times New Roman', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; }
+        .dim-desc { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+      
+        .highlight-box { background: var(--accent-bg); border-left: 3px solid var(--accent); padding: 1rem 1.5rem; border-radius: 0 6px 6px 0; margin: 1.2rem 0; }
+        .highlight-box p { font-size: 0.93rem; color: var(--text); line-height: 1.7; text-align: justify; }
+        .highlight-box strong { color: var(--navy); }
+
+    
+        @media (max-width: 768px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero-meta { flex-direction: column; }
+            .grid-2, .grid-3, .dim-grid { grid-template-columns: 1fr; }
+            .scale-row { grid-template-columns: 1fr; }
+            .section, .banner-section { padding: 2rem 1.2rem; }
+            .nav-link { padding: 0.6rem 0.5rem; font-size: 0.68rem; }
+        }
+        .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .ref { white-space: nowrap; }
+        .biblio p { font-size: 0.8rem; color: var(--text-light); line-height: 1.55; padding-left: 1.6em; text-indent: -1.6em; margin-bottom: 0.5rem; text-align: left; }
+        .biblio p .auth { font-variant: small-caps; color: var(--navy); font-size: 0.85rem; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+
+<header class="hero-banner">
+    <div class="hero-inner">
+        <div class="hero-top-line">Portfolio de recherche · Projet de thèse doctorale</div>
+        <h1 class="hero-title">Gouverner l'État à l'épreuve<br>de l'intelligence artificielle</h1>
+        <p class="hero-subtitle">Chaînes de décision, prestataires et souveraineté numérique dans la haute fonction publique</p>
+        <div class="hero-meta">
+            <div><strong>Programme :</strong> Doctorat de sociologie, Sciences Po</div>
+            <div><strong>Unité :</strong> médialab</div>
+            <div><strong>Direction :</strong> Dominique Cardon (Pr., HDR)</div>
+            <div><strong>Codirection :</strong> Philippe Bezes (DR CNRS, HDR, CEE)</div>
+            <div><strong>Candidat :</strong> Thibault Lalut, Master Sociologie (EHESS, mention très bien)</div>
+        </div>
+        <div class="keywords">
+            <span class="kw">élites administratives</span>
+            <span class="kw">décision algorithmique</span>
+            <span class="kw">intelligence artificielle</span>
+            <span class="kw">État-plateforme</span>
+            <span class="kw">automatisation administrative</span>
+            <span class="kw">souveraineté numérique</span>
+            <span class="kw">externalisation</span>
+            <span class="kw">haute fonction publique</span>
+        </div>
+    </div>
+</header>
+
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="#resume" class="nav-link">1. Résumé</a>
+        <a href="#problematisation" class="nav-link">2. Problématisation</a>
+        <a href="#hypotheses" class="nav-link">3. Hypothèses</a>
+        <a href="#etat-art" class="nav-link">4. État de l'art</a>
+        <a href="#cadre" class="nav-link">5. Cadre</a>
+        <a href="#methodo" class="nav-link">6. Méthodologie</a>
+        <a href="#faisabilite" class="nav-link">7. Faisabilité</a>
+        <a href="#contributions" class="nav-link">8. Contributions</a>
+        <a href="#integration" class="nav-link">9. Intégration</a>
+        <a href="#calendrier" class="nav-link">10. Calendrier</a>
+        <a href="#bibliographie" class="nav-link">11. Bibliographie</a>
+    </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- SECTION 1 — RÉSUMÉ EXÉCUTIF                                  -->
+<!-- ============================================================ -->
+<section id="resume" class="banner-section banner-warm fade-in visible">
+    <div class="section-inner">
+        <div class="section-num">Section 1</div>
+        <h2 class="section-title">Résumé exécutif</h2>
+        <p class="section-lead">
+            Quand l'action publique s'appuie sur l'intelligence artificielle, pour attribuer des places, authentifier des usagers ou cibler des contrôles, les lieux réels de la décision se déplacent vers les équipes qui conçoivent, paramètrent, maintiennent et contrôlent ces outils. S'y mêlent agents publics, prestataires privés et instances de contrôle.
+        </p>
+        <div class="highlight-box">
+            <p><strong>Tension structurante :</strong> l'État réaffirme sa souveraineté numérique et sa responsabilité, alors même que des compétences, des expertises et des données devenues essentielles sont détenues hors de l'État.</p>
+        </div>
+        <p style="font-size:0.93rem;color:var(--text-light);line-height:1.75;margin-bottom:1rem;">
+            Cette thèse examine <strong>comment la généralisation des systèmes d'intelligence artificielle recompose le sommet de l'administration</strong>. Par quels mécanismes redistribue-t-elle l'autorité, l'imputabilité (la capacité à désigner qui répond d'une décision) et les prises sur la décision <strong>entre élites administratives traditionnelles, profils techniques internes et acteurs externalisés&nbsp;?</strong> Et comment ces redistributions se stabilisent-elles, se justifient-elles et deviennent-elles traçables&nbsp;?
+        </p>
+        <p style="font-size:0.93rem;color:var(--text-light);line-height:1.75;margin-bottom:1rem;">
+            Ces questions dessinent <strong>plusieurs scénarios concurrents de recomposition</strong> (captation par l'expertise technique, formation d'une élite d'interface, ou séparation durable entre dirigeants et techniciens), que l'enquête confronte aux cadres normatifs et aux différences entre secteurs.
+        </p>
+        <p style="font-size:0.93rem;color:var(--text-light);line-height:1.75;">
+            L'enquête s'ouvre au milieu des années 2010, avec l'institutionnalisation de la transformation numérique de l'État. Elle mobilise une comparaison avec le Royaume-Uni et combine biographie collective des dirigeants (prosopographie), entretiens et <strong>deux configurations contrastées</strong>. D'une part, l'<strong>écosystème d'IA prédictive de la DGFiP</strong>, administration de masse où le ciblage des contrôles par les données est routinisé depuis les années 2010. D'autre part, l'<strong>IA générative interministérielle</strong>, observée à deux niveaux&nbsp;: son versant infrastructure, avec <strong>Albert API</strong> et l'<strong>Assistant IA</strong> portés par la DINUM (déployé auprès de 10&nbsp;000 agents dans huit ministères pilotes depuis octobre 2025, en partenariat avec Mistral AI), et son versant usage et qualité de service, avec le dispositif «&nbsp;Je donne mon avis&nbsp;» de <strong>Services Publics+</strong> porté par la <strong>DITP</strong>, où une IA générative aide les agents à répondre aux usagers depuis fin 2023.
+        </p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2 — PROBLÉMATISATION                                 -->
+<!-- ============================================================ -->
+<section id="problematisation" class="section fade-in visible">
+    <div class="section-num">Section 2</div>
+    <h2 class="section-title">Problématisation, périmètre et questions de recherche</h2>
+    <p style="font-size:0.93rem;color:var(--text-light);line-height:1.75;margin-bottom:1.2rem;">
+        Le mode de régulation change&nbsp;: on passe d'une règle énoncée par la loi à une règle en partie encodée dans des programmes, alimentée par les données et activée automatiquement <span class="ref">(Supiot, 2015)</span>. C'est ce que l'on peut analyser comme une <em>gouvernementalité algorithmique</em> <span class="ref">(Rouvroy et Berns, 2013)</span>, qui transforme la manière dont l'État se représente la société par les chiffres <span class="ref">(Desrosières, 1993)</span>.
+    </p>
+    <p style="font-size:0.93rem;color:var(--text-light);line-height:1.75;margin-bottom:1.2rem;">
+        Une deuxième transformation tient à l'infrastructure technique et organisationnelle qui rend cette automatisation possible. L'État affirme une <strong>souveraineté numérique tout en dépendant d'acteurs privés qui détiennent des outils et des données devenus critiques.</strong> L'<strong>écosystème IA de la DGFiP</strong> illustre cette tension&nbsp;: administration de masse dotée de réelles capacités internes en exploitation des données et en IA prédictive, elle reste tributaire de prestataires pour développer, maintenir et héberger ses infrastructures. Le programme <strong>Albert</strong> (DINUM) l'illustre autrement&nbsp;: infrastructure présentée comme souveraine (hébergement certifié <strong>SecNumCloud</strong>, label de sécurité de l'ANSSI), mais reposant sur des <strong>briques privées critiques</strong> (fournisseurs de modèles, hébergeurs, intégrateurs) et sur des standards venus de l'industrie.
+    </p>
+    <p style="font-size:0.93rem;color:var(--text-light);line-height:1.75;margin-bottom:1.2rem;">
+        L'impératif numérique oblige un État structuré par les grands corps à s'ouvrir à des profils contractuels, au prix d'une <strong>pénurie de compétences</strong> <span class="ref">(Gally, 2020&nbsp;; CGE &amp; IGF, 2023)</span> qui fragilise sa capacité à piloter ses projets <span class="ref">(Cour des comptes, 2020)</span>. Il en résulte une <strong>friction croissante entre souveraineté proclamée et externalisation réelle</strong>.
+    </p>
+    <div class="highlight-box">
+        <p><strong>Enjeu central :</strong> l'essor de l'expertise IA et des dispositifs numériques redistribue-t-il réellement les prises sur la décision administrative, ou produit-il une simple translation des répertoires de légitimation (les manières de justifier l'autorité), captée par les élites traditionnelles&nbsp;?</p>
+    </div>
+
+    <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin:2rem 0 0.8rem;">2.1. Délimitation</h3>
+    <div class="grid-3" style="margin-bottom:2rem;">
+        <div class="card">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 3v18"></path></svg></div><div class="card-label">Niveau d'analyse</div></div>
+            <div class="card-text"><strong>Gouvernement des systèmes&nbsp;:</strong> les architectures, les standards, les procédures de contrôle et les règles de responsabilité des outils numériques, mais aussi les dispositifs qui organisent leur réception, leur contrôle humain et leur évaluation</div>
+        </div>
+        <div class="card">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"></circle><path d="M5.5 21a6.5 6.5 0 0 1 13 0"></path></svg></div><div class="card-label">Population</div></div>
+            <div class="card-text">Définie par le rôle joué dans les <strong>chaînes qui font fonctionner les dispositifs</strong>&nbsp;: titulaires de postes de direction, profils techniques, acteurs externes pesant sur les arbitrages</div>
+        </div>
+        <div class="card">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg></div><div class="card-label">Périmètre temporel</div></div>
+            <div class="card-text">Du milieu des années 2010 au temps de l'enquête, structuré en trois cohortes&nbsp;: 2015-2018 (avant la DINUM, autour de la DINSIC et d'Etalab), 2019-2023 (création de la DINUM) et 2024-2026 (Albert API et Assistant IA)</div>
+        </div>
+    </div>
+
+    <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin:1.5rem 0 0.8rem;">2.2. Contrepoint international&nbsp;: Royaume-Uni</h3>
+    <p style="font-size:0.93rem;color:var(--text-light);line-height:1.7;margin-bottom:1rem;">
+        Un étalonnage documentaire portera sur le cas britannique. Le <span class="ref">Government Digital Service (GDS, 2011)</span> puis la <span class="ref">Central Digital &amp; Data Office (CDDO, 2021–2025)</span>, depuis réintégrée au GDS, offrent un point de comparaison structuré&nbsp;: le Royaume-Uni a centralisé son expertise numérique avant la France, dans une tradition administrative différente. L'objectif est de distinguer ce qui, dans la recomposition française, relève d'une dynamique générale de l'IA publique et ce qui tient à des traditions nationales <span class="ref">(Pollitt et Bouckaert, 2017)</span>.<br><br><strong>Dispositif :</strong> corpus documentaire (stratégies, rapports d'audit, débats parlementaires) codé selon les mêmes catégories que le cas français&nbsp;; mobilité possible à Londres <span class="ref">(Sciences Po–LSE)</span>. Ce contrepoint sera conservé si le corpus atteint un niveau de comparabilité suffisant.
+    </p>
+
+    <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin:2rem 0 0.8rem;">2.3. Questions de recherche</h3>
+    <div class="highlight-box" style="margin-bottom:1.5rem;">
+        <p><strong>Question principale :</strong> qui détient les prises effectives sur les systèmes d'IA de l'État, comment celles-ci se convertissent-elles ou non en capacité d'orientation, et avec quels effets sur la responsabilité et la souveraineté numérique, dans un contexte où les compétences techniques se recomposent entre expertise interne et recours à des prestataires&nbsp;?</p>
+    </div>
+    <div class="num-item"><div class="num-circle">1</div><div><strong style="color:var(--navy);">Ressources et positions</strong><p style="font-size:0.9rem;color:var(--text-light);">Comment les <strong>compétences en IA se distribuent-elles</strong> dans la haute fonction publique, et à quelles conditions deviennent-elles convertibles en <strong>autorité réelle</strong>, c'est-à-dire en accès aux postes d'arbitrage, en capacité à imposer un cadrage et en rôle dans la définition des standards et des conditions d'usage&nbsp;?</p></div></div>
+    <div class="num-item"><div class="num-circle">2</div><div><strong style="color:var(--navy);">Chaînes de décision et responsabilité</strong><p style="font-size:0.9rem;color:var(--text-light);">Comment les conditions de production et de maintenance des outils, y compris l'externalisation sous ses diverses formes (conseil, intégration, infogérance, sous-traitance), affectent-elles <strong>les séquences d'arbitrage et les stratégies de justification des élites administratives</strong>&nbsp;?</p></div></div>
+    <div class="num-item"><div class="num-circle">3</div><div><strong style="color:var(--navy);">Souveraineté et gouvernabilité</strong><p style="font-size:0.9rem;color:var(--text-light);">Dans quelle mesure les <strong>encadrements normatifs et organisationnels (RGPD, AI Act, instances de contrôle, comités d'éthique, exigences de documentation et d'auditabilité) contribuent-ils à stabiliser</strong> la responsabilité et à rendre les dispositifs gouvernables, <strong>ou mettent-ils au contraire en évidence les limites</strong> du contrôle politique et administratif sur des infrastructures techniques complexes&nbsp;?</p></div></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3 — HYPOTHÈSES                                       -->
+<!-- ============================================================ -->
+<section id="hypotheses" class="banner-section banner-accent fade-in visible">
+    <div class="section-inner">
+        <div class="section-num">Section 3</div>
+        <h2 class="section-title">Hypothèses</h2>
+        <div style="display:grid;gap:0.8rem;">
+            <div class="hyp-card"><div class="hyp-id">H1</div><div class="hyp-title">Conversion différentielle par les corps technico-scientifiques</div><div class="hyp-text"><strong>Les corps d'ingénieurs (Mines, Ponts) et les parcours en systèmes d'information transformeraient plus facilement les compétences en IA en pouvoir</strong> que les filières juridiques et administratives. Cet écart se mesurerait à leur surreprésentation dans les postes d'arbitrage et à des carrières plus ascendantes.</div></div>
+            <div class="hyp-card"><div class="hyp-id">H2a</div><div class="hyp-title">Émergence d'une élite d'interface par hybridation technico-administrative</div><div class="hyp-text"><strong>Une élite d'interface</strong>, des agents combinant maîtrise technique et culture administrative, <strong>profiterait de son rôle d'intermédiaire</strong> pour transformer des contraintes techniques en décisions politiques difficiles à contester, et capter ainsi l'arbitrage.</div></div>
+            <div class="hyp-card"><div class="hyp-id">H2b</div><div class="hyp-title">Polarisation durable&nbsp;: séparation élite dirigeante / élite technique</div><div class="hyp-text">À l'inverse, la recomposition pourrait produire une <strong>division du travail stable</strong>&nbsp;: l'élite dirigeante (corps juridiques et administratifs) garde les arbitrages stratégiques en absorbant formellement les compétences en IA, tandis que les ingénieurs restent cantonnés à l'exécution. Les <strong>positions dominantes se reproduiraient</strong>.</div></div>
+            <div class="hyp-card"><div class="hyp-id">H3</div><div class="hyp-title">Domestication juridique et normative de l'algorithme</div><div class="hyp-text"><strong>Les élites administratives déploieraient un arsenal de règles et de procédures pour réaffirmer la primauté du politique sur la technique</strong>, ce que la littérature nomme <em>algorithmic rule by law</em> <span class="ref">(Smuha, 2024)</span>.</div></div>
+            <div class="hyp-card"><div class="hyp-id">H4</div><div class="hyp-title">Fractures internes entre styles administratifs et inégalités d'appropriation</div><div class="hyp-text"><strong>Déploiement inégal selon les cultures ministérielles</strong>&nbsp;: plus aisé là où la culture est technique (Économie-Finances, Intérieur) que là où l'action repose sur l'appréciation humaine au cas par cas (Justice, Affaires étrangères).</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4 — ÉTAT DE L'ART                                    -->
+<!-- ============================================================ -->
+<section id="etat-art" class="section fade-in visible">
+    <div class="section-num">Section 4</div>
+    <h2 class="section-title">État de l'art et positionnement</h2>
+    <p class="section-lead" style="text-align:center;">
+        <strong>Cette recherche croise quatre champs de littérature</strong>, dans le cadre de la <em>Digital Era Governance</em> <span class="ref">(Dunleavy et al., 2008)</span>, dont les travaux récents décrivent une troisième vague portée par la diffusion de la science des données et de l'IA <span class="ref">(Dunleavy et Margetts, 2025)</span>.
+    </p>
+    <div class="grid-2" style="margin-bottom:1.5rem;">
+        <div class="card card-left"><div class="card-label">1 · Transformation bureaucratique</div><div class="card-title">Du guichet à l'architecture des systèmes</div><div class="card-text"><strong>Le pouvoir d'appréciation se déplace du traitement des dossiers vers la conception des dispositifs</strong> <span class="ref">(Bovens et Zouridis, 2002)</span>&nbsp;: ce sont désormais des choix techniques, en apparence mineurs, qui produisent les effets de règle <span class="ref">(Roehl et Crompvoets, 2025)</span>.<br><br><strong>Enjeu empirique :</strong> qui occupe ces positions dans le cas français, et comment se situent-elles face aux élites généralistes&nbsp;?</div></div>
+        <div class="card card-left"><div class="card-label">2 · Gouvernement numérique &amp; Datafication</div><div class="card-title">Infrastructures informationnelles de l'État</div><div class="card-text">La fabrication des données et des catégories n'est jamais neutre&nbsp;: standardiser des informations, c'est figer des catégories aux effets normatifs <span class="ref">(Denis et Goëta, 2017)</span>. Les architectures techniques deviennent une forme de politique discrète <span class="ref">(Boullier, 2016)</span>.<br><br><strong>Angle mort :</strong> les acteurs qui les gouvernent.</div></div>
+        <div class="card card-left"><div class="card-label">3 · Opacité algorithmique &amp; Imputabilité</div><div class="card-title">Opacité des systèmes et responsabilité</div><div class="card-text">L'opacité des systèmes fragilise la responsabilité <span class="ref">(Pasquale, 2015&nbsp;; Busuioc, 2021)</span>. L'«&nbsp;ignorance organisationnelle&nbsp;» <span class="ref">(Kronblad et al., 2024)</span> décrit des <strong>zones de non-savoir</strong> qui protègent les organisations. Inscrire les garanties de l'État de droit dans l'architecture technique <span class="ref">(Hildebrandt, 2015)</span> ouvre vers un «&nbsp;constitutionnalisme numérique&nbsp;» <span class="ref">(De Gregorio, 2022)</span>.<br><br><strong>Question :</strong> que font concrètement les élites de cette opacité&nbsp;?</div></div>
+        <div class="card card-left"><div class="card-label">4 · Externalisation &amp; Souveraineté</div><div class="card-title">Déficits de responsabilité et privatisation numérique</div><div class="card-text">Le recours aux prestataires crée des «&nbsp;<strong>déficits de responsabilité</strong>&nbsp;» <span class="ref">(Alon-Barkat et al., 2025)</span>. La «&nbsp;privatisation numérique&nbsp;» <span class="ref">(Jeannot et Cottin-Marx, 2022)</span> rend parfois indistinctes les identités publiques et privées <span class="ref">(Cour des comptes, 2024)</span>, produisant des infrastructures hybrides <span class="ref">(Crawford, 2021)</span> qui reposent sur un travail humain invisible <span class="ref">(Casilli, 2019)</span>.<br><br><strong>Constat :</strong> des infrastructures hybrides qui débordent les cadres de contrôle classiques.</div></div>
+    </div>
+    <div class="highlight-box"><p><strong>Lacune et promesse empirique :</strong> là où les thèses d'Alauzen (2019) et de Bellon (2018) éclairent la modernisation du guichet numérique et les politiques de l'internet, la littérature n'analyse pas la rencontre entre ces dynamiques et un pouvoir administratif structuré par les grands corps. <strong>Documenter cette rencontre, en reliant trajectoires des élites et dispositifs techniques, est la promesse de cette thèse.</strong></p></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 5 — CADRE CONCEPTUEL                                 -->
+<!-- ============================================================ -->
+<section id="cadre" class="banner-section banner-navy fade-in visible">
+    <div class="section-inner">
+        <div class="section-num">Section 5</div>
+        <h2 class="section-title">Cadre conceptuel</h2>
+        <p class="section-lead">Le cadre relie trois niveaux d'analyse, <strong>traversés par la question du rapport entre savoir et pouvoir</strong> <span class="ref">(Foucault, 1975)</span>&nbsp;: comment une expertise se constitue et se légitime comme source d'autorité.</p>
+        <div style="display:grid;gap:1.2rem;margin-bottom:2rem;">
+            <div class="scale-row"><div class="scale-label">Macro</div><div><strong style="color:#fff;font-size:0.93rem;">Gouvernementalité algorithmique</strong><p style="font-size:0.88rem;color:rgba(255,255,255,0.7);">Le régime de normativité dans lequel s'inscrivent les dispositifs <span class="ref">(Rouvroy et Berns, 2013)</span>. Mobilisée pour comprendre les <strong>conditions qui rendent ces transformations possibles</strong>, non comme théorie de l'action.</p></div></div>
+            <div class="scale-row"><div class="scale-label">Méso</div><div><strong style="color:#fff;font-size:0.93rem;">Zones d'incertitude &amp; Traduction</strong><p style="font-size:0.88rem;color:rgba(255,255,255,0.7);">Les «&nbsp;zones d'incertitude&nbsp;» <span class="ref">(Crozier et Friedberg, 1977)</span>, points où se loge une marge de manœuvre dans une organisation, et les mécanismes de «&nbsp;traduction&nbsp;» <span class="ref">(Callon, 1986)</span> servent à analyser <strong>qui a réellement prise sur les systèmes d'IA</strong>.</p></div></div>
+            <div class="scale-row"><div class="scale-label">Micro</div><div><strong style="color:#fff;font-size:0.93rem;">Trajectoires et pratiques</strong><p style="font-size:0.88rem;color:rgba(255,255,255,0.7);">Comment, concrètement, les acteurs s'ajustent, négocient et consolident leurs positions au contact des systèmes d'IA.</p></div></div>
+        </div>
+
+        <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.2rem;font-weight:700;color:#fff;margin:1.5rem 0 0.8rem;">5.1. Contrôle des marges de manœuvre dans les systèmes d'IA</h3>
+        <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:1rem;">
+            Dans les systèmes d'IA, les marges de manœuvre se logent dans les choix qui font tenir un dispositif en production et qui engagent la justice, le risque et la responsabilité. <strong>Qui fixe le périmètre des données&nbsp;? Qui tranche un incident de calibration&nbsp;? Qui délimite les usages autorisés d'un assistant d'IA générative&nbsp;?</strong> Ceux qui savent rendre ces arbitrages lisibles entre langage technique et langage administratif (cahiers des charges, tableaux de bord, journaux d'audit) disposent d'une <strong>prise privilégiée sur la décision</strong>.
+        </p>
+        <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:1.5rem;">
+            Cette prise s'ancre dans des <strong>positions d'intermédiaire</strong> au sein de réseaux reliant administrations, recherche et secteur privé (une <em><strong>coding elite</strong></em>, <span class="ref">Burrell et Fourcade, 2021</span>), et se convertit en pouvoir dans les luttes autour des standards et des conditions d'usage <span class="ref">(Abbott, 1988)</span>.
+        </p>
+        <div style="background:rgba(200,164,90,0.15);border-left:3px solid var(--accent-light);padding:0.8rem 1.2rem;border-radius:0 6px 6px 0;margin-bottom:2rem;">
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.9);"><strong style="color:var(--accent-light);">Trois scénarios testables :</strong> captation par les corps technico-scientifiques (H1), séparation stable entre dirigeants et techniciens (H2b), ou émergence d'une élite d'interface (H2a). Le risque de simplification est traité par le croisement des méthodes et le test systématique des hypothèses concurrentes.</p>
+        </div>
+
+        <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;font-weight:700;color:#fff;margin:1rem 0 0.8rem;">5.2. Opérationnalisation&nbsp;: six dimensions exploratoires</h3>
+        <p style="font-size:0.93rem;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:1.2rem;">
+            Le volet quantitatif repose sur six dimensions, traitées comme des <strong>variables d'exploration</strong>. L'objectif est de <strong>cartographier l'espace des positions</strong>, puis d'en dégager des profils types.
+        </p>
+        <div class="dim-grid">
+            <div class="dim-card">
+                <div class="dim-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
+                <div class="dim-num">(i)</div><div class="dim-title">Formation</div><div class="dim-desc">Cursus data/IA, certifications, formations continues</div>
+            </div>
+            <div class="dim-card">
+                <div class="dim-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg></div>
+                <div class="dim-num">(ii)</div><div class="dim-title">Exposition</div><div class="dim-desc">DINUM, directions du numérique ministérielles, missions data/IA</div>
+            </div>
+            <div class="dim-card">
+                <div class="dim-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                <div class="dim-num">(iii)</div><div class="dim-title">Interface</div><div class="dim-desc">Comités mixtes, pilotages transversaux, fonctions de traduction</div>
+            </div>
+            <div class="dim-card">
+                <div class="dim-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                <div class="dim-num">(iv)</div><div class="dim-title">Réseau</div><div class="dim-desc">Mobilités entre public et privé, partenariats institutionnalisés</div>
+            </div>
+            <div class="dim-card">
+                <div class="dim-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+                <div class="dim-num">(v)</div><div class="dim-title">Production symbolique</div><div class="dim-desc">Publications, prises de parole, mandats, cadrages doctrinaux</div>
+            </div>
+            <div class="dim-card">
+                <div class="dim-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                <div class="dim-num">(vi)</div><div class="dim-title">Arbitrage IA</div><div class="dim-desc">Instances où se discutent standards, métriques, seuils, auditabilité</div>
+            </div>
+        </div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:0.8rem;line-height:1.6;margin-bottom:1.5rem;">
+            Leur combinaison (analyses factorielles) fait apparaître proximités, oppositions et profils composites, ensuite confrontés aux entretiens. Pour éviter tout raisonnement circulaire, l'analyse vérifie que la compétence en IA n'est pas un simple <strong style="color:rgba(255,255,255,0.75);">habillage technologique</strong> qui redoublerait des hiérarchies préexistantes. Variables de contrôle&nbsp;: corps d'origine, génération, voie d'entrée, passage par le privé.
+        </p>
+
+        <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;font-weight:700;color:var(--accent-light);margin:2rem 0 0.5rem;">Souveraineté numérique comme propriété relationnelle et distribuée</h3>
+        <p style="font-size:0.9rem;color:rgba(255,255,255,0.75);line-height:1.7;">
+            Capacité d'un acteur à détenir ou imposer durablement des conditions difficilement remplaçables d'accès, d'audit, d'usage ou de réversibilité sur des fonctions critiques de l'action publique. Elle déplace l'analyse des proclamations vers le lieu réel de l'arbitrage.
+        </p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 6 — MÉTHODOLOGIE                                     -->
+<!-- ============================================================ -->
+<section id="methodo" class="section fade-in visible">
+    <div class="section-num">Section 6</div>
+    <h2 class="section-title">Dispositif méthodologique</h2>
+    <p class="section-lead">Approche mixte combinant biographie collective (prosopographie), entretiens et études de cas.</p>
+    <div class="grid-2" style="margin-bottom:1.2rem;">
+        <div class="card card-left">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div><div class="card-label">6.1 · Biographie collective</div></div>
+            <div class="card-title">≥ 150 dirigeants et cadres supérieurs</div>
+            <div class="card-text">Administrations centrales et opérateurs impliqués dans la conception, le pilotage ou la régulation des dispositifs numériques. Environ 15 à 20 variables&nbsp;: parcours de formation et de carrière, mobilités public-privé, position actuelle, réseaux, production symbolique. Cet effectif autorise des analyses statistiques tout en limitant les risques de réidentification <span class="ref">(Lemercier et Picard, 2012)</span>. Données&nbsp;: annuaires, rapports officiels, profils publics (conformes au RGPD), entretiens exploratoires.</div>
+        </div>
+        <div class="card card-left">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg></div><div class="card-label">6.2 · Méthodes d'analyse</div></div>
+            <div class="card-title">Analyses factorielles &amp; analyse thématique</div>
+            <div class="card-text"><strong>Quantitatif :</strong> analyses factorielles pour décrire l'espace des positions, puis regroupement en profils types, dont la solidité est vérifiée par rééchantillonnage.<br><strong>Qualitatif :</strong> analyse thématique (logiciel NVivo) des récits de carrière, des stratégies de légitimation, des rapports aux prestataires et des <strong>moments d'arbitrage</strong>.</div>
+        </div>
+    </div>
+    <div class="grid-2">
+        <div class="card card-left">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.42A12 12 0 0 1 12 21a12 12 0 0 1-6.16-10.42L12 14z"></path></svg></div><div class="card-label">6.3 · Entretiens</div></div>
+            <div class="card-title">30 à 40 entretiens semi-directifs</div>
+            <div class="card-text">
+                <strong>(1)</strong> Hauts fonctionnaires de grands corps sans implication directe dans le numérique<br>
+                <strong>(2)</strong> Responsables de transformation numérique (DINUM, DSI, Etalab), <strong>cœur de cible</strong><br>
+                <strong>(3)</strong> Profils techniques recrutés par l'État (data scientists, ingénieurs IA, designers)<br>
+                <strong>(4)</strong> Observateurs privilégiés (anciens responsables, journalistes, chercheurs, syndicats)
+            </div>
+        </div>
+        <div class="card card-left">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div><div class="card-label">6.4 · Études de cas</div></div>
+            <div class="card-title">Deux cas, trois niveaux d'observation</div>
+            <div class="card-text">
+                <strong>Cas 1 · DGFiP, IA prédictive routinisée :</strong> administration de masse où le ciblage des contrôles par les données est routinisé depuis les années 2010, avec des capacités internes développées et un recours organisé aux prestataires.<br>
+                <strong>Cas 2 · IA générative interministérielle,</strong> saisie à deux niveaux complémentaires&nbsp;:<br>
+                — <strong>DINUM</strong> (infrastructure)&nbsp;: Albert API et l'Assistant IA, choix de modèles, hébergement, standards, prestataires, souveraineté&nbsp;;<br>
+                — <strong>DITP</strong> (usage et qualité de service)&nbsp;: le dispositif «&nbsp;Je donne mon avis&nbsp;» de Services Publics+, appropriation par les agents, contrôle humain, réponse aux usagers, évaluation, passage à l'échelle.<br><br>
+                Cette double entrée suit une même dynamique générative, de ses conditions techniques jusqu'à ses effets observables sur l'action publique.
+            </div>
+        </div>
+    </div>
+    <div class="highlight-box" style="margin-top:1.2rem;">
+        <p><strong>6.5. Éthique et protection des données :</strong> consentement éclairé, pseudonymisation dès la transcription, stockage chiffré avec clé d'identification conservée à part. Profils publics traités conformément au RGPD (intérêt légitime, art.&nbsp;6 §1 f), avec droit d'opposition individuel et suppression des données brutes après la soutenance.</p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 7 — FAISABILITÉ                                      -->
+<!-- ============================================================ -->
+<section id="faisabilite" class="banner-section banner-warm fade-in visible">
+    <div class="section-inner">
+        <div class="section-num">Section 7</div>
+        <h2 class="section-title">Faisabilité et risques</h2>
+        <div class="grid-3" style="margin-bottom:2rem;">
+            <div class="card">
+                <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></div><div class="card-label">Entretiens INSP</div></div>
+                <div class="card-text">Points d'entrée réactivables issus du mémoire de Master</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg></div><div class="card-label">Maîtrise R + Python</div></div>
+                <div class="card-text">Analyses factorielles, collecte, traitement et analyse de textes</div>
+            </div>
+            <div class="card">
+                <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="card-label">Affiliation médialab</div></div>
+                <div class="card-text">Légitimité académique et articulation avec le CEE</div>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-bottom:1.5rem;">
+            <p><strong>Stratégie d'accès au terrain :</strong> approche progressive combinant identification des acteurs-clés, sollicitation de profils périphériques et recours aux anciens agents. <strong>Jalon de décision à M+12 :</strong> si la documentation et les entretiens sur Albert API ne permettent pas de reconstituer au moins trois séquences d'arbitrage, le cas secondaire deviendra un simple contrepoint documentaire et l'enquête se concentrera sur la DGFiP.</p>
+        </div>
+
+        <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:0.8rem;">Matrice des risques</h3>
+        <div class="risk-item"><div class="risk-num">(1)</div><div><div class="risk-title">Refus d'accès aux acteurs centraux</div><div class="risk-parade">→ <strong>Parade :</strong> anciens agents ayant quitté les organisations, acteurs périphériques (prestataires, associations), archives publiques</div></div></div>
+        <div class="risk-item"><div class="risk-num">(2)</div><div><div class="risk-title">Opacité technique des systèmes étudiés</div><div class="risk-parade">→ <strong>Parade :</strong> controverses publiques, obligations de transparence (code des relations entre le public et l'administration, RGPD), dont les limites nourrissent de nouveaux droits <span class="ref">(Stepanov, 2024)</span></div></div></div>
+        <div class="risk-item"><div class="risk-num">(3)</div><div><div class="risk-title">Fragilité d'accès au terrain Albert API / DINUM (cas secondaire)</div><div class="risk-parade">→ <strong>Parade :</strong> le cas principal (DGFiP) dispose d'une base documentaire autonome (cahiers des charges, analyses d'impact, demandes d'accès aux documents administratifs)&nbsp;; Albert sera maintenu comme contrepoint documentaire même en cas d'accès limité</div></div></div>
+        <div class="risk-item"><div class="risk-num">(4)</div><div><div class="risk-title">Évolution rapide des technologies</div><div class="risk-parade">→ <strong>Parade :</strong> focus sur les logiques sociales plutôt que sur les outils</div></div></div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 8 — CONTRIBUTIONS                                    -->
+<!-- ============================================================ -->
+<section id="contributions" class="section fade-in visible">
+    <div class="section-num">Section 8</div>
+    <h2 class="section-title">Contributions attendues</h2>
+    <p class="section-lead">La contribution tient à un même geste, décliné sur trois plans.</p>
+    <div class="grid-3">
+        <div class="card">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"></path></svg></div><div class="card-label">Théorique</div></div>
+            <div class="card-text">Comprendre l'IA administrative à partir des médiations qui la rendent opérante&nbsp;: situer la ressource de pouvoir dans la prise sur les données, les métriques, l'audit et les conditions d'usage. Suivre cette prise lorsqu'elle circule au sommet de l'État et se cristallise dans les positions d'intermédiaire. Proposer une lecture de la souveraineté numérique comme <strong>propriété distribuée</strong>.</div>
+        </div>
+        <div class="card">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></div><div class="card-label">Méthodologique</div></div>
+            <div class="card-text"><strong>Un protocole de biographie collective combinant six dimensions de dotation</strong>, analysées par méthodes factorielles avec vérification de solidité, entretiens et études de cas en contexte d'opacité, conçu pour être transposable à d'autres terrains en mutation technologique.</div>
+        </div>
+        <div class="card">
+            <div class="card-head"><div class="card-icon"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg></div><div class="card-label">Empirique</div></div>
+            <div class="card-text"><strong>Une cartographie des acteurs</strong> de la gouvernance numérique de l'État français. À partir de deux cas contrastés, DGFiP (IA prédictive routinisée) et IA générative interministérielle (DINUM pour l'infrastructure, DITP pour l'usage), reconstitution des chaînes de décision et de responsabilité. Grille transposable, centrée sur les élites qui conçoivent plutôt que sur les populations concernées <span class="ref">(Eubanks, 2018&nbsp;; Noble, 2018)</span>.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 9 — INTÉGRATION                                      -->
+<!-- ============================================================ -->
+<section id="integration" class="banner-section banner-accent fade-in visible">
+    <div class="section-inner">
+        <div class="section-num">Section 9</div>
+        <h2 class="section-title">Intégration au médialab, articulation avec le CEE</h2>
+        <div class="grid-2">
+            <div>
+                <p style="font-size:0.93rem;color:var(--text);line-height:1.75;margin-bottom:1rem;">
+                    Le <strong>médialab</strong>, en codirection avec le <strong>CEE</strong>, offre un cadre cohérent&nbsp;: les travaux de Cardon sur le pouvoir des algorithmes <span class="ref">(2015&nbsp;; 2018)</span> et ceux de Bezes sur le gouvernement par la performance <span class="ref">(2009&nbsp;; 2020)</span> relient l'étude des dispositifs numériques et celle des transformations de l'administration.
+                </p>
+                <p style="font-size:0.93rem;color:var(--text);line-height:1.75;">
+                    Les méthodes du médialab (cartographie de controverses) et l'expertise du CEE en biographie collective des élites seront directement mobilisées.
+                </p>
+            </div>
+            <div>
+                <div class="card" style="background:rgba(26,39,68,0.05);border-color:var(--border);text-align:justify;">
+                    <div class="card-label" style="color:var(--navy);">Double inscription</div>
+                    <div class="card-text">
+                        <strong>Médialab :</strong> cartographie de controverses, modélisation des traces, enquête sur les situations algorithmiques.<br><br>
+                        <strong>CEE :</strong> biographie collective des élites, analyse des réformes de l'État, gouvernement par la performance.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 10 — CALENDRIER                                      -->
+<!-- ============================================================ -->
+<section id="calendrier" class="section fade-in visible">
+    <div class="section-num">Section 10</div>
+    <h2 class="section-title">Calendrier prévisionnel</h2>
+    <div style="margin-bottom:0.8rem;display:flex;gap:1.2rem;flex-wrap:wrap;font-size:0.75rem;">
+        <span><span class="phase-bar phase-intensive" style="width:16px;height:10px;border-radius:3px;vertical-align:middle;margin-right:4px;"></span> Intensive</span>
+        <span><span class="phase-bar phase-secondary" style="width:16px;height:10px;border-radius:3px;vertical-align:middle;margin-right:4px;"></span> Secondaire</span>
+        <span><span class="phase-bar phase-writing" style="width:16px;height:10px;border-radius:3px;vertical-align:middle;margin-right:4px;"></span> Écriture</span>
+        <span><span class="phase-bar phase-valorisation" style="width:16px;height:10px;border-radius:3px;vertical-align:middle;margin-right:4px;"></span> Valorisation</span>
+        <span><span class="phase-bar phase-mobility" style="width:16px;height:10px;border-radius:3px;vertical-align:middle;margin-right:4px;"></span> Mobilité LSE</span>
+    </div>
+    <div style="overflow-x:auto;">
+        <table class="data-table">
+            <thead><tr><th style="min-width:200px;">Phase</th><th>M 1-6</th><th>M 7-12</th><th>M 13-18</th><th>M 19-24</th><th>M 25-30</th><th>M 31-36</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Revue littérature &amp; protocole</strong></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>Corpus documentaire</strong></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>Biographie collective</strong></td><td></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>Analyses factorielles</strong></td><td></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td></td><td></td><td></td></tr>
+                <tr><td><strong>Entretiens (≈40)</strong></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td></td><td></td></tr>
+                <tr><td><strong>Études de cas</strong></td><td></td><td></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td></td><td></td></tr>
+                <tr><td><strong>Comparaison UK</strong></td><td></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td><span class="phase-bar phase-mobility" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td></td></tr>
+                <tr><td><strong>Réd.</strong> chap. méthodologique</td><td></td><td></td><td></td><td><span class="phase-bar phase-writing" style="width:100%;"></span></td><td></td><td></td></tr>
+                <tr><td><strong>Réd.</strong> chap. biographie collective</td><td></td><td></td><td></td><td><span class="phase-bar phase-writing" style="width:100%;"></span></td><td></td><td></td></tr>
+                <tr><td><strong>Réd.</strong> chapitres empiriques</td><td></td><td></td><td></td><td></td><td><span class="phase-bar phase-writing" style="width:100%;"></span></td><td></td></tr>
+                <tr><td><strong>Réd.</strong> chapitres théoriques</td><td></td><td></td><td></td><td></td><td><span class="phase-bar phase-writing" style="width:100%;"></span></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td></tr>
+                <tr><td><strong>Réd.</strong> Intro &amp; Conclusion</td><td></td><td></td><td></td><td></td><td></td><td><span class="phase-bar phase-writing" style="width:100%;"></span></td></tr>
+                <tr><td><strong>Valorisation</strong></td><td></td><td></td><td></td><td><span class="phase-bar phase-secondary" style="width:100%;"></span></td><td><span class="phase-bar phase-valorisation" style="width:100%;"></span></td><td><span class="phase-bar phase-valorisation" style="width:100%;"></span></td></tr>
+                <tr><td><strong>Finalisation &amp; dépôt</strong></td><td></td><td></td><td></td><td></td><td></td><td><span class="phase-bar phase-intensive" style="width:100%;"></span></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:1rem;font-size:0.85rem;color:var(--text-light);">
+        <p style="margin-bottom:0.4rem;"><strong>Année 1 :</strong> consolidation théorique et méthodologique, lancement de la biographie collective, entretiens exploratoires.</p>
+        <p style="margin-bottom:0.4rem;"><strong>Année 2 :</strong> terrain intensif, rédaction méthodologie et biographie collective.</p>
+        <p><strong>Année 3 :</strong> finalisation terrain, rédaction finale, valorisation, dépôt.</p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 11 — BIBLIOGRAPHIE                                   -->
+<!-- ============================================================ -->
+<section id="bibliographie" class="section fade-in visible">
+    <div class="section-num">Section 11</div>
+    <h2 class="section-title">Bibliographie sélective</h2>
+    <p class="section-lead">Bibliographie volontairement sélective. Cette présentation étant synthétique, les entrées ci-dessous se limitent aux références citées dans le corps du texte et ne reflètent pas l'ensemble des travaux mobilisés par le projet de thèse.</p>
+    <div class="biblio">
+        <p><span class="auth">Abbott, Andrew.</span> 1988. <em>The System of Professions</em>. Chicago: University of Chicago Press.</p>
+        <p><span class="auth">Alauzen, Marie.</span> 2019. <em>Plis et replis de l'État plateforme : Enquête sur la modernisation des services publics en France</em>. Thèse de doctorat en sociologie, Université PSL.</p>
+        <p><span class="auth">Alon-Barkat, Saar, et al.</span> 2025. «&nbsp;Algorithmic discrimination in public service provision: Understanding citizens' attribution of responsibility for human versus algorithmic discriminatory outcomes&nbsp;». <em>Journal of Public Administration Research and Theory</em> 35 (4): 469–488.</p>
+        <p><span class="auth">Bellon, Anne.</span> 2018. <em>Gouverner l'internet. Mobilisations, expertises et bureaucraties dans la fabrique des politiques numériques (1969–2017)</em>. Thèse de doctorat en science politique, Université Paris 1 Panthéon-Sorbonne.</p>
+        <p><span class="auth">Bezes, Philippe.</span> 2009. <em>Réinventer l'État. Les réformes de l'administration française (1962–2008)</em>. Paris: PUF.</p>
+        <p><span class="auth">Bezes, Philippe.</span> 2020. «&nbsp;Le nouveau phénomène bureaucratique : le gouvernement par la performance entre bureaucratisation, marché et politique&nbsp;». <em>Revue française de science politique</em> 70 (1): 21–47.</p>
+        <p><span class="auth">Boullier, Dominique.</span> 2016. <em>Sociologie du numérique</em>. Paris: Armand Colin.</p>
+        <p><span class="auth">Bovens, Mark, et Stavros Zouridis.</span> 2002. «&nbsp;From street-level to system-level bureaucracies: How information and communication technology is transforming administrative discretion and constitutional control&nbsp;». <em>Public Administration Review</em> 62 (2): 174–184.</p>
+        <p><span class="auth">Burrell, Jenna, et Marion Fourcade.</span> 2021. «&nbsp;The Society of Algorithms&nbsp;». <em>Annual Review of Sociology</em> 47: 213–237.</p>
+        <p><span class="auth">Busuioc, Madalina.</span> 2021. «&nbsp;Accountable Artificial Intelligence: Holding Algorithms to Account&nbsp;». <em>Public Administration Review</em> 81 (5): 825–836.</p>
+        <p><span class="auth">Callon, Michel.</span> 1986. «&nbsp;Some elements of a sociology of translation: domestication of the scallops and the fishermen of St Brieuc Bay&nbsp;». Dans John Law (dir.), <em>Power, Action and Belief</em>. Londres: Routledge, p. 196–233.</p>
+        <p><span class="auth">Cardon, Dominique.</span> 2015. <em>À quoi rêvent les algorithmes. Nos vies à l'heure des big data</em>. Paris: Seuil.</p>
+        <p><span class="auth">Cardon, Dominique.</span> 2018. «&nbsp;Le pouvoir des algorithmes&nbsp;». <em>Pouvoirs</em> 164 (1): 63–73.</p>
+        <p><span class="auth">Casilli, Antonio A.</span> 2019. <em>En attendant les robots : Enquête sur le travail du clic</em>. Paris: Seuil.</p>
+        <p><span class="auth">Conseil général de l'économie, de l'industrie, de l'énergie et des technologies, et Inspection générale des finances.</span> 2023. <em>Les ressources humaines de l'État dans le numérique</em>. Rapport. Paris.</p>
+        <p><span class="auth">Cour des comptes.</span> 2020. <em>Le numérique au service de la transformation de l'action publique</em>. Paris.</p>
+        <p><span class="auth">Cour des comptes.</span> 2024. <em>Le pilotage de la transformation numérique de l'État par la direction interministérielle du numérique</em>. Paris.</p>
+        <p><span class="auth">Crawford, Kate.</span> 2021. <em>Atlas of AI: Power, Politics, and the Planetary Costs of Artificial Intelligence</em>. New Haven: Yale University Press.</p>
+        <p><span class="auth">Crozier, Michel, et Erhard Friedberg.</span> 1977. <em>L'acteur et le système. Les contraintes de l'action collective</em>. Paris: Éditions du Seuil.</p>
+        <p><span class="auth">De Gregorio, Giovanni.</span> 2022. <em>Digital Constitutionalism in Europe: Reframing Rights and Powers in the Algorithmic Society</em>. Cambridge: Cambridge University Press.</p>
+        <p><span class="auth">Denis, Jérôme, et Samuel Goëta.</span> 2017. «&nbsp;Rawification and the careful generation of open government data&nbsp;». <em>Social Studies of Science</em> 47 (5): 604–629.</p>
+        <p><span class="auth">Desrosières, Alain.</span> 1993. <em>La politique des grands nombres. Histoire de la raison statistique</em>. Paris: La Découverte.</p>
+        <p><span class="auth">Dunleavy, Patrick, et al.</span> 2008. <em>Digital Era Governance: IT Corporations, the State, and e-Government</em>. Oxford: Oxford University Press.</p>
+        <p><span class="auth">Dunleavy, Patrick, et Helen Margetts.</span> 2025. «&nbsp;Data science, artificial intelligence and the third wave of digital era governance&nbsp;». <em>Public Policy and Administration</em> 40 (2): 185–214.</p>
+        <p><span class="auth">Eubanks, Virginia.</span> 2018. <em>Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor</em>. New York: St. Martin's Press.</p>
+        <p><span class="auth">Foucault, Michel.</span> 1975. <em>Surveiller et punir. Naissance de la prison</em>. Paris : Gallimard.</p>
+        <p><span class="auth">Gally, Natacha.</span> 2020. «&nbsp;La haute fonction publique entre organisations, professions et patrons : une sociologie comparée des marchés du travail administratifs&nbsp;». <em>Revue française de science politique</em> 70 (1): 49–74.</p>
+        <p><span class="auth">Hildebrandt, Mireille.</span> 2015. <em>Smart Technologies and the End(s) of Law: Novel Entanglements between Law and Technology</em>. Cheltenham: Edward Elgar.</p>
+        <p><span class="auth">Jeannot, Gilles, et Simon Cottin-Marx.</span> 2022. <em>La privatisation numérique. Déstabilisation et réinvention du service public</em>. Paris: Raisons d'agir.</p>
+        <p><span class="auth">Kronblad, Charlotta, Anna Essén, et Magnus Mähring.</span> 2024. «&nbsp;When Justice Is Blind to Algorithms: Multilayered Blackboxing of Algorithmic Decision-Making in the Public Sector&nbsp;». <em>MIS Quarterly</em> 48 (4): 1637–1662.</p>
+        <p><span class="auth">Lemercier, Claire, et Emmanuelle Picard.</span> 2012. «&nbsp;Quelle approche prosopographique ?&nbsp;». Dans <em>Les uns et les autres : Biographies et prosopographies en histoire des sciences</em>, sous la direction de Laurent Rollet et Philippe Nabonnaud, 605–630. Nancy: Presses Universitaires de Nancy.</p>
+        <p><span class="auth">Noble, Safiya Umoja.</span> 2018. <em>Algorithms of Oppression: How Search Engines Reinforce Racism</em>. New York: NYU Press.</p>
+        <p><span class="auth">Pasquale, Frank.</span> 2015. <em>The Black Box Society: The Secret Algorithms That Control Money and Information</em>. Cambridge: Harvard University Press.</p>
+        <p><span class="auth">Pollitt, Christopher, et Geert Bouckaert.</span> 2017. <em>Public Management Reform: A Comparative Analysis – Into the Age of Austerity</em>. 4e éd. Oxford: Oxford University Press.</p>
+        <p><span class="auth">Roehl, Ulrik, et Joep Crompvoets.</span> 2025. «&nbsp;Inside Algorithmic Bureaucracy: Disentangling Automated Decision-making and Good Administration&nbsp;». <em>Public Policy and Administration</em> 40 (2): 322–350.</p>
+        <p><span class="auth">Rouvroy, Antoinette, et Thomas Berns.</span> 2013. «&nbsp;Gouvernementalité algorithmique et perspectives d'émancipation : le disparate comme condition d'individuation par la relation ?&nbsp;». <em>Réseaux</em> 177: 163–196.</p>
+        <p><span class="auth">Smuha, Nathalie A.</span> 2024. <em>Algorithmic Rule by Law: How Algorithmic Regulation in the Public Sector Erodes the Rule of Law</em>. Cambridge: Cambridge University Press.</p>
+        <p><span class="auth">Stepanov, Andrei.</span> 2024. «&nbsp;Vers l'émergence de nouveaux droits fondamentaux contre l'administration algorithmique&nbsp;». <em>Confluence des droits</em> 12.</p>
+        <p><span class="auth">Supiot, Alain.</span> 2015. <em>La gouvernance par les nombres : Cours au Collège de France (2012–2014)</em>. Paris: Fayard.</p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BANDEAU CONTACT                                              -->
+<!-- ============================================================ -->
+<section class="banner-section banner-navy fade-in visible" style="padding-top:2.2rem;padding-bottom:2.2rem;">
+    <div class="section-inner" style="text-align:center;">
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:1rem;color:var(--accent-light);letter-spacing:0.04em;margin-bottom:0.9rem;">Contact</div>
+        <div style="font-size:1.05rem;color:#fff;margin-bottom:0.4rem;">Thibault Lalut</div>
+        <div style="margin-bottom:0.3rem;"><a href="mailto:thibault.lalut@ehess.fr" style="color:#fff;text-decoration:none;font-size:0.95rem;">thibault.lalut@ehess.fr</a></div>
+        <div><a href="https://www.linkedin.com/in/thibault-lalut/" target="_blank" style="color:var(--accent-light);text-decoration:none;font-size:0.9rem;">linkedin.com/in/thibault-lalut</a></div>
+    </div>
+</section>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+const navLinks = document.querySelectorAll('.nav-link');
+const sectionIds = ['resume','problematisation','hypotheses','etat-art','cadre','methodo','faisabilite','contributions','integration','calendrier','bibliographie'];
+const sectionEls = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sectionEls.forEach(s => { if (s.getBoundingClientRect().top <= 100) current = s.id; });
+    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+});
+</script>
+</body></html>
